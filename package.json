@@ -13,7 +13,7 @@
   },
   "keywords": [],
   "author": "octor",
-  "license": "MIT",
+  "license": "GPL-V-3.0",
   "config": {
     "forge": {
       "packagerConfig": {},
@@ -42,9 +42,13 @@
     }
   },
   "dependencies": {
+    "electron-dialog": "^2.0.0",
     "electron-squirrel-startup": "^1.0.0",
+    "electron-webrtc": "^0.3.0",
     "ipfs": "^0.54.4",
-    "requirejs": "^2.3.6"
+    "prom-client": "^13.1.0",
+    "requirejs": "^2.3.6",
+    "wrtc": "^0.4.7"
   },
   "devDependencies": {
     "@electron-forge/cli": "^6.0.0-beta.54",
