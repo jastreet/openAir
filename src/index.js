@@ -1,4 +1,4 @@
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, dialog } = require('electron');
 const path = require('path');
 const IPFS = require('ipfs');
 const Room = require('ipfs-pubsub-room');
@@ -13,6 +13,10 @@ const createWindow = () => {
   const mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
+    webPreferences: {
+      nodeIntegration: true,
+      contextIsolation: false,
+    }
   });
 
   // and load the index.html of the app.
@@ -29,18 +33,7 @@ app.on('ready', async () => {
   createWindow();
 
   try {
-    const node = await IPFS.create();
-    const id = await node.id();
-    const room = new Room(node, 'uw');
-    console.log(id);
-
-    room.on('peer joined', (peer) => console.log('peer ' + peer + ' joined'));
-    room.on('peer left', (peer) => console.log('peer ' + peer + ' left'));
-    
-    room.on('peer joined', (peer) => room.sendTo(peer, 'Hello ' + peer + '!'));
-    room.on('message', (message) => console.log('message from ' + message.from + ': ' + message.data.toString()));
-
-    setInterval(() => room.broadcast('shalom'), 2000);
+    chat();
   } catch (err) {
     console.error(err);
   }
@@ -65,3 +58,18 @@ app.on('activate', () => {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and import them here.
+
+async function chat() {
+  const node = await IPFS.create();
+  const id = await node.id();
+  const room = new Room(node, 'uw');
+  console.log(id);
+
+  room.on('peer joined', (peer) => console.log('peer ' + peer + ' joined'));
+  room.on('peer left', (peer) => console.log('peer ' + peer + ' left'));
+
+  room.on('peer joined', (peer) => room.sendTo(peer, 'Hello ' + peer + '!'));
+  room.on('message', (message) => console.log('message from ' + message.from + ': ' + message.data.toString()));
+
+  setInterval(() => room.broadcast('hey everyone!'), 2000);
+}
