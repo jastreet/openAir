@@ -2,6 +2,10 @@ const { app, BrowserWindow, dialog } = require('electron');
 const path = require('path');
 const IPFS = require('ipfs');
 const Room = require('ipfs-pubsub-room');
+const events = require('events');
+
+
+var eventEmitter = new events.EventEmitter();
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) { // eslint-disable-line global-require
@@ -65,11 +69,20 @@ async function chat() {
   const room = new Room(node, 'uw');
   console.log(id);
 
-  room.on('peer joined', (peer) => console.log('peer ' + peer + ' joined'));
+  room.on('peer joined', (peer) => {
+    console.log('peer ' + peer + ' joined');
+    eventEmitter.emit('connection');
+  });
   room.on('peer left', (peer) => console.log('peer ' + peer + ' left'));
 
   room.on('peer joined', (peer) => room.sendTo(peer, 'Hello ' + peer + '!'));
-  room.on('message', (message) => console.log('message from ' + message.from + ': ' + message.data.toString()));
+
+  room.on('message', (message) => {
+    console.log('message from ' + message.from + ': ' + message.data.toString());
+    eventEmitter.emit('message');
+  });
 
   setInterval(() => room.broadcast('hey everyone!'), 2000);
 }
+
+module.exports = {eventEmitter, chat};
