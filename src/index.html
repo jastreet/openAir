@@ -11,6 +11,30 @@
     <script defer src="render.js"></script>
   </head>
   <body>
+    <div class="toolbar">
+      <button type="reset" id="send" align="right">SEND</button>
+      <input type="text" id="input" placeholder="What's on your mind?"></input>
+      <textarea id="area" readonly></textarea>
+      </div>
+      <canvas class="myCanvas"></canvas>
+      <script>
+        var canvas = document.querySelector('.myCanvas');
+        var width = canvas.width = window.innerWidth;
+        var height = canvas.height = window.innerHeight-85;
+        var inputfield = document.getElementById("input").value;
+        var ctx = canvas.getContext('2d');
+        area.cols = 50;
+		    area.wrap = "hard";
+        /*ctx.fillStyle = '#9bc1ff';
+        ctx.fillRect(0,0,width,height);
+        ctx.font = "30px Arial";*/
+
+        send.onclick = function() {
+          console.log(document.getElementById("input").value);
+          document.getElementById("input").value = '';
+        }
+      </script>
+
     <h1>💖 Hello World!</h1>
     <p>Welcome to IPFSocial</p>
   </body>
