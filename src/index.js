@@ -71,5 +71,5 @@ async function chat() {
   room.on('peer joined', (peer) => room.sendTo(peer, 'Hello ' + peer + '!'));
   room.on('message', (message) => console.log('message from ' + message.from + ': ' + message.data.toString()));
 
-  //setInterval(() => room.broadcast('hey everyone!'), 2000);
+  setInterval(() => room.broadcast('hey everyone!'), 2000);
 }
