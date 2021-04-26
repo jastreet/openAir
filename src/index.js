@@ -68,7 +68,7 @@ async function chat() {
 
   room.on('peer joined', (peer) => {
     console.log('peer ' + peer + ' joined');
-    eventEmitter.emit('connection');
+    
   });
   room.on('peer left', (peer) => console.log('peer ' + peer + ' left'));
 
@@ -76,7 +76,7 @@ async function chat() {
 
   room.on('message', (message) => {
     console.log('message from ' + message.from + ': ' + message.data.toString());
-    eventEmitter.emit('message');
+    
   });
 
   //setInterval(() => room.broadcast('hey everyone!'), 2000);

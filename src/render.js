@@ -1,4 +1,3 @@
-var eventEmitter = new events.EventEmitter();
 
 var canvas = document.querySelector('.myCanvas');
 var width = canvas.width = window.innerWidth;
@@ -11,15 +10,6 @@ area.cols = 50;
 ctx.fillRect(0,0,width,height);
 ctx.font = "30px Arial";*/
 
-var peerListener = function peerListener() {
-    console.log('peerListener executed.');
-}
-eventEmitter.addListener('connection', peerListener);
-
-var messageListener = function messageListener() {
-    console.log('messageListener received.');
-}
-eventEmitter.addListener('message', messageListener);
 
 send.onclick = function() {
   console.log(document.getElementById("input").value);
