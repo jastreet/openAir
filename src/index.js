@@ -2,7 +2,7 @@ const { app, BrowserWindow, dialog } = require('electron');
 const path = require('path');
 const IPFS = require('ipfs');
 const Room = require('ipfs-pubsub-room');
-import {chat} from './chat.js';
+import {chat} from './chat.cjs';
 
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
