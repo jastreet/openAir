@@ -14,6 +14,9 @@ ctx.font = "30px Arial";*/
 
 send.onclick = function() {
   console.log(document.getElementById("input").value);
-  document.getElementById("input").value = '';
+  ipcRenderer.send('message', document.getElementById("input").value);
+
+  
+
 }
 

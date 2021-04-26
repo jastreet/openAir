@@ -76,8 +76,11 @@ async function chat() {
 
   room.on('message', (message) => {
     console.log('message from ' + message.from + ': ' + message.data.toString());
-    
+
   });
 
+  ipcMain.on('message', (event, arg) => {
+    room.broadcast(arg.toString());
+  })
   //setInterval(() => room.broadcast('hey everyone!'), 2000);
 }
