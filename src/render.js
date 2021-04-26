@@ -1,3 +1,4 @@
+const { ipcRenderer } = require('electron');
 
 var canvas = document.querySelector('.myCanvas');
 var width = canvas.width = window.innerWidth;
@@ -15,5 +16,4 @@ send.onclick = function() {
   console.log(document.getElementById("input").value);
   document.getElementById("input").value = '';
 }
-
 

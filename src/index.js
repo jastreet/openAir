@@ -1,4 +1,4 @@
-const { app, BrowserWindow, dialog } = require('electron');
+const { ipcMain, app, BrowserWindow, dialog } = require('electron');
 const path = require('path');
 const IPFS = require('ipfs');
 const Room = require('ipfs-pubsub-room');
@@ -34,7 +34,7 @@ app.on('ready', async () => {
   createWindow();
 
   try {
-    chat.chat();
+    chat();
   } catch (err) {
     console.error(err);
   }
