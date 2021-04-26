@@ -12,7 +12,7 @@
     "lint": "echo \"No linting configured\""
   },
   "keywords": [],
-  "author": "octor",
+  "author": "Jett Street",
   "license": "GPL-V-3.0",
   "config": {
     "forge": {

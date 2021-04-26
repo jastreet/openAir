@@ -1,5 +1,3 @@
-import {events, chat} from './index.js';
-
 var eventEmitter = new events.EventEmitter();
 
 var canvas = document.querySelector('.myCanvas');
