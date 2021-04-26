@@ -1,3 +1,7 @@
+const IPFS = require('ipfs');
+const Room = require('ipfs-pubsub-room');
+const eventEmitter = require('events');
+
 async function chat() {
     const node = await IPFS.create();
     const id = await node.id();
@@ -19,3 +23,5 @@ async function chat() {
   
     setInterval(() => room.broadcast('hey everyone!'), 2000);
   }
+
+  module.exports = {chat};
